@@ -38,4 +38,9 @@ public class Document {
 		return list.remove(list.size() - 1);
 	}
 
+	public void redo() {
+		AppendTextCommand lastCommand = pop(undidCommands);
+		this.commands.add(lastCommand);
+	}
+
 }
