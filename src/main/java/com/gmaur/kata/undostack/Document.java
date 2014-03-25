@@ -18,7 +18,13 @@ public class Document {
 	}
 
 	public void addCommand(Command appendTextCommand) {
+		appendTextCommand.setOrder(this.commands.size()+1);
 		this.commands.add(appendTextCommand);
+	}
+
+	@Override
+	public String toString() {
+		return commands.toString();
 	}
 
 	public boolean hasRedo() {

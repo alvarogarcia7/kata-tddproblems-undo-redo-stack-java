@@ -19,7 +19,6 @@ public class CommandUndoTest {
 	public void document_with_a_command_has_undo() {
 		assertTrue(document.hasUndo());
 	}
-
 	
 	@Test
 	public void document_after_undo_has_redo() {  
