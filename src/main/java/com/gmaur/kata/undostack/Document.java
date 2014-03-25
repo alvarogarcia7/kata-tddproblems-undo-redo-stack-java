@@ -30,8 +30,12 @@ public class Document {
 	}
 
 	public void undo() {
-		AppendTextCommand lastCommand = pop(commands);
-		this.undidCommands.add(lastCommand);
+		moveLastCommand(commands, this.undidCommands);
+	}
+
+	private void moveLastCommand(List<AppendTextCommand> from, List<AppendTextCommand> to) {
+		AppendTextCommand lastCommand = pop(from);
+		to.add(lastCommand);
 	}
 
 	private AppendTextCommand pop(List<AppendTextCommand> list) {
@@ -39,8 +43,7 @@ public class Document {
 	}
 
 	public void redo() {
-		AppendTextCommand lastCommand = pop(undidCommands);
-		this.commands.add(lastCommand);
+		moveLastCommand(undidCommands, commands);
 	}
 
 }
