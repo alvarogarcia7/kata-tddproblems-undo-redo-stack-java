@@ -56,4 +56,8 @@ public class Document {
 		return commands.get(commands.size() - 1).getOrder();
 	}
 
+	public Object getRedoCommandNumber() {
+		return undidCommands.get(undidCommands.size() - 1).getOrder();
+	}
+
 }
