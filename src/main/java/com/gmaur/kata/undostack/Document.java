@@ -14,11 +14,11 @@ public class Document {
 	}
 
 	public boolean hasUndo() {
-		return isNotEmpty(this.commands);
+		return isNotEmpty(commands);
 	}
 
 	public void addCommand(Command appendTextCommand) {
-		appendTextCommand.setOrder(this.commands.size()+1);
+		appendTextCommand.setOrder(commands.size()+1);
 		this.commands.add(appendTextCommand);
 	}
 
@@ -28,7 +28,7 @@ public class Document {
 	}
 
 	public boolean hasRedo() {
-		return isNotEmpty(this.undidCommands);
+		return isNotEmpty(undidCommands);
 	}
 
 	private boolean isNotEmpty(List<Command> list) {
@@ -36,7 +36,7 @@ public class Document {
 	}
 
 	public void undo() {
-		moveLastCommand(commands, this.undidCommands);
+		moveLastCommand(commands, undidCommands);
 	}
 
 	private void moveLastCommand(List<Command> from, List<Command> to) {
