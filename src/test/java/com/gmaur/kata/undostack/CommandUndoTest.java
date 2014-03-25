@@ -18,6 +18,7 @@ public class CommandUndoTest {
 	@Test
 	public void document_with_a_command_has_undo() {
 		assertTrue(document.hasUndo());
+		assertEquals(1, document.getUndoCommandNumber());
 		assertEquals("[1]", document.toString());
 	}
 
