@@ -1,15 +1,23 @@
 package com.gmaur.kata.undostack;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Document {
 
+	private List<AppendTextCommand> commands;
+	
+	public Document(){
+		this. commands = new ArrayList<AppendTextCommand>();
+	}
+
 	public boolean hasUndo() {
-		// TODO Auto-generated method stub
-		return false;
+		boolean hasUndo = !this.commands.isEmpty();
+		return hasUndo;
 	}
 
 	public void addCommand(AppendTextCommand appendTextCommand) {
-		// TODO Auto-generated method stub
-		
+		this.commands.add(appendTextCommand);
 	}
 
 }
