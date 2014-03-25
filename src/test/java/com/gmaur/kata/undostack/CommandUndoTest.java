@@ -35,5 +35,14 @@ public class CommandUndoTest {
 		document.undo();
 		assertTrue(document.hasRedo());
 	}
+	
+	@Test
+	public void document_after_redo_has_undo_again() {
+		Document document = new Document();
+		document.addCommand(new AppendTextCommand("hola"));
+		document.undo();
+		document.redo();
+		assertTrue(document.hasUndo());
+	}
 
 }
