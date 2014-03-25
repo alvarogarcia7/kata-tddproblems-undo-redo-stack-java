@@ -53,11 +53,15 @@ public class Document {
 	}
 
 	public int getUndoCommandNumber() {
-		return commands.get(commands.size() - 1).getOrder();
+		return peek(commands).getOrder();
+	}
+
+	private Command peek(List<Command> from) {
+		return from.get(from.size() - 1);
 	}
 
 	public Object getRedoCommandNumber() {
-		return undidCommands.get(undidCommands.size() - 1).getOrder();
+		return peek(undidCommands).getOrder();
 	}
 
 }
