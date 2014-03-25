@@ -20,4 +20,14 @@ public class Document {
 		this.commands.add(appendTextCommand);
 	}
 
+	public boolean hasRedo() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void undo() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
