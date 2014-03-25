@@ -18,12 +18,14 @@ public class CommandUndoTest {
 	@Test
 	public void document_with_a_command_has_undo() {
 		assertTrue(document.hasUndo());
+		assertEquals("[1]", document.toString());
 	}
 
 	@Test
 	public void document_after_undo_has_redo() {
 		document.undo();
 		assertTrue(document.hasRedo());
+		assertEquals("[]", document.toString());
 	}
 
 	@Test
@@ -31,6 +33,7 @@ public class CommandUndoTest {
 		document.undo();
 		document.redo();
 		assertTrue(document.hasUndo());
+		assertEquals("[1]", document.toString());
 	}
 
 	@Test
