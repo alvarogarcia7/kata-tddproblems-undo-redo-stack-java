@@ -14,8 +14,7 @@ public class Document {
 	}
 
 	public boolean hasUndo() {
-		boolean hasUndo = !this.commands.isEmpty();
-		return hasUndo;
+		return isNotEmpty(this.commands);
 	}
 
 	public void addCommand(AppendTextCommand appendTextCommand) {
@@ -23,8 +22,11 @@ public class Document {
 	}
 
 	public boolean hasRedo() {
-		boolean hasRedo = !this.undidCommands.isEmpty();
-		return hasRedo;
+		return isNotEmpty(this.undidCommands);
+	}
+
+	private boolean isNotEmpty(List<AppendTextCommand> list) {
+		return !list.isEmpty();
 	}
 
 	public void undo() {
