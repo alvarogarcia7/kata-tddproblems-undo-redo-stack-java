@@ -4,9 +4,6 @@ public class Command {
 
 	private int order;
 
-	public Command() {
-	}
-
 	public void setOrder(int order) {
 		this.order = order;
 	}
