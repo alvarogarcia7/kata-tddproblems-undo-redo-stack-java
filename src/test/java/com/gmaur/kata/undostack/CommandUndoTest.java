@@ -37,4 +37,15 @@ public class CommandUndoTest {
 		assertTrue(document.hasUndo());
 		assertEquals("[1]", document.toString());
 	}
+	
+	@Test
+	public void acceptance_test_with_three_commands() {
+		document.addCommand(new Command()); //2
+		document.undo(); //2
+		document.addCommand(new Command()); //3
+		document.undo(); //3
+		
+		assertEquals(3, document.getRedoCommandNumber());
+		assertEquals(1, document.getUndoCommandNumber());
+	}
 }
