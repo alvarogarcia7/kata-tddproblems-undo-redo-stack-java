@@ -26,6 +26,7 @@ public class CommandUndoTest {
 	public void document_after_undo_has_redo() {
 		document.undo();
 		assertTrue(document.hasRedo());
+		assertEquals(1, document.getRedoCommandNumber());
 		assertEquals("[]", document.toString());
 	}
 
