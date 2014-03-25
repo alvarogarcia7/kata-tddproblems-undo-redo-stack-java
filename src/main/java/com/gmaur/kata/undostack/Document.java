@@ -52,4 +52,8 @@ public class Document {
 		moveLastCommand(undidCommands, commands);
 	}
 
+	public int getUndoCommandNumber() {
+		return commands.get(commands.size() - 1).getOrder();
+	}
+
 }

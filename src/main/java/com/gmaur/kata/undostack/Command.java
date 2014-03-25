@@ -13,4 +13,8 @@ public class Command {
 		return Integer.toString(order);
 	}
 
+	public int getOrder() {
+		return order;
+	}
+
 }
