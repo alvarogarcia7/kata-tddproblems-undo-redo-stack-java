@@ -56,12 +56,11 @@ public class Document {
 		return peek(commands).getOrder();
 	}
 
-	private Command peek(List<Command> from) {
-		return from.get(from.size() - 1);
-	}
-
 	public Object getRedoCommandNumber() {
 		return peek(undidCommands).getOrder();
 	}
 
+	private Command peek(List<Command> from) {
+		return from.get(from.size() - 1);
+	}
 }
