@@ -12,7 +12,7 @@ public class CommandUndoTest {
 	@Before
 	public void setUp() {
 		document = new Document();
-		document.addCommand(new AppendTextCommand());
+		document.addCommand(new Command());
 	}
 	
 	@Test

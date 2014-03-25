@@ -5,19 +5,19 @@ import java.util.List;
 
 public class Document {
 
-	private List<AppendTextCommand> commands;
-	private List<AppendTextCommand> undidCommands;
+	private List<Command> commands;
+	private List<Command> undidCommands;
 
 	public Document() {
-		this.commands = new ArrayList<AppendTextCommand>();
-		this.undidCommands = new ArrayList<AppendTextCommand>();
+		this.commands = new ArrayList<Command>();
+		this.undidCommands = new ArrayList<Command>();
 	}
 
 	public boolean hasUndo() {
 		return isNotEmpty(this.commands);
 	}
 
-	public void addCommand(AppendTextCommand appendTextCommand) {
+	public void addCommand(Command appendTextCommand) {
 		this.commands.add(appendTextCommand);
 	}
 
@@ -25,7 +25,7 @@ public class Document {
 		return isNotEmpty(this.undidCommands);
 	}
 
-	private boolean isNotEmpty(List<AppendTextCommand> list) {
+	private boolean isNotEmpty(List<Command> list) {
 		return !list.isEmpty();
 	}
 
@@ -33,12 +33,12 @@ public class Document {
 		moveLastCommand(commands, this.undidCommands);
 	}
 
-	private void moveLastCommand(List<AppendTextCommand> from, List<AppendTextCommand> to) {
-		AppendTextCommand lastCommand = pop(from);
+	private void moveLastCommand(List<Command> from, List<Command> to) {
+		Command lastCommand = pop(from);
 		to.add(lastCommand);
 	}
 
-	private AppendTextCommand pop(List<AppendTextCommand> list) {
+	private Command pop(List<Command> list) {
 		return list.remove(list.size() - 1);
 	}
 
