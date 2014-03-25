@@ -6,9 +6,11 @@ import java.util.List;
 public class Document {
 
 	private List<AppendTextCommand> commands;
-	
-	public Document(){
-		this. commands = new ArrayList<AppendTextCommand>();
+	private List<AppendTextCommand> undidCommands;
+
+	public Document() {
+		this.commands = new ArrayList<AppendTextCommand>();
+		this.undidCommands = new ArrayList<AppendTextCommand>();
 	}
 
 	public boolean hasUndo() {
@@ -21,13 +23,13 @@ public class Document {
 	}
 
 	public boolean hasRedo() {
-		// TODO Auto-generated method stub
-		return false;
+		boolean hasRedo = !this.undidCommands.isEmpty();
+		return hasRedo;
 	}
 
 	public void undo() {
-		// TODO Auto-generated method stub
-		
+		AppendTextCommand lastCommand = commands.remove(commands.size() - 1);
+		this.undidCommands.add(lastCommand);
 	}
 
 }
