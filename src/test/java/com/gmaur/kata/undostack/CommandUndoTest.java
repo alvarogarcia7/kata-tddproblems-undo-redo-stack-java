@@ -33,5 +33,10 @@ public class CommandUndoTest {
 		document.redo();
 		assertTrue(document.hasUndo());
 	}
+	
+	@Test
+	public void get_printing_message(){
+		assertEquals("[1]",document.toString());
+	}
 
 }
