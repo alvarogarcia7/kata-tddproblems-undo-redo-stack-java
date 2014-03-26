@@ -7,10 +7,12 @@ public class Document {
 
 	private List<Command> commands;
 	private List<Command> undidCommands;
+	private int orderNumber;
 
 	public Document() {
 		this.commands = new ArrayList<Command>();
 		this.undidCommands = new ArrayList<Command>();
+		orderNumber = 0;
 	}
 
 	public boolean hasUndo() {
@@ -18,7 +20,8 @@ public class Document {
 	}
 
 	public void addCommand(Command appendTextCommand) {
-		appendTextCommand.setOrder(commands.size()+1);
+		++orderNumber;
+		appendTextCommand.setOrder(orderNumber);
 		this.commands.add(appendTextCommand);
 	}
 
