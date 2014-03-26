@@ -39,6 +39,23 @@ public class CommandUndoTest {
 	}
 	
 	@Test
+	public void acceptance_test_with_two_commands() {
+		document.addCommand(new Command()); //2
+		assertEquals(2, document.getUndoCommandNumber());
+		assertFalse(document.hasRedo());
+		
+		document.undo(); //2
+		
+		assertEquals(1, document.getUndoCommandNumber());
+		assertEquals(2, document.getRedoCommandNumber());
+		
+		document.undo(); //1
+		assertEquals(1, document.getRedoCommandNumber());
+		document.redo(); //1
+		assertEquals(2, document.getRedoCommandNumber());
+	}
+	
+	@Test
 	public void acceptance_test_with_three_commands() {
 		document.addCommand(new Command()); //2
 		document.undo(); //2
