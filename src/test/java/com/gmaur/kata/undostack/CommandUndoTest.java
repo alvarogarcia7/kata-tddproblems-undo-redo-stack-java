@@ -43,7 +43,7 @@ public class CommandUndoTest {
 		document.addCommand(new Command()); //2
 		document.undo(); //2
 		document.addCommand(new Command()); //3
-		document.undo(); //3
+		document.undo(); //3 
 		
 		assertEquals(3, document.getRedoCommandNumber());
 		assertEquals(1, document.getUndoCommandNumber());
