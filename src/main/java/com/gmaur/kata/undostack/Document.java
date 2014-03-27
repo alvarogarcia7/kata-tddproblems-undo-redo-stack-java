@@ -45,10 +45,10 @@ public class Document {
 	}
 
 	public int getUndoCommandNumber() {
-		return undoCommands.peek().getOrder();
+		return undoCommands.getCommandOrder();
 	}
 
 	public Object getRedoCommandNumber() {
-		return redoCommands.peek().getOrder();
+		return redoCommands.getCommandOrder();
 	}
 }

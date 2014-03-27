@@ -37,4 +37,8 @@ public class Commands {
 	public String toString() {
 		return commands.toString();
 	}
+
+	public int getCommandOrder() {
+		return commands.peek().getOrder();
+	}
 }
