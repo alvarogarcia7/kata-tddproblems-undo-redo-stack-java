@@ -9,6 +9,7 @@ public class Document {
 		private List<Command> commands;
 
 		public Commands() {
+			this.commands = new ArrayList<Command>();
 		}
 
 		public List<Command> getCommands() {
@@ -56,8 +57,8 @@ public class Document {
 	private int orderNumber;
 
 	public Document() {
-		this.data.setCommands(new ArrayList<Command>());
-		this.data2.setUndidCommands(new ArrayList<Command>());
+		this.data = new Commands();
+		this.data2 = new Commands();
 		orderNumber = 0;
 	}
 
