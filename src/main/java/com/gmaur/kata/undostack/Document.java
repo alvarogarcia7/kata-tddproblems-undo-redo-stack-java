@@ -36,37 +36,37 @@ public class Document {
 		
 	}
 
-	private Commands data = new Commands();
-	private Commands data2 = new Commands();
+	private Commands undoCommands = new Commands();
+	private Commands redoCommands = new Commands();
 	private int orderNumber;
 
 	public Document() {
-		this.data = new Commands();
-		this.data2 = new Commands();
+		this.undoCommands = new Commands();
+		this.redoCommands = new Commands();
 		orderNumber = 0;
 	}
 
 	public boolean hasUndo() {
-		return data.isNotEmpty();
+		return undoCommands.isNotEmpty();
 	}
 
 	public void addCommand(Command appendTextCommand) {
 		++orderNumber;
 		appendTextCommand.setOrder(orderNumber);
-		this.data.add(appendTextCommand);
+		this.undoCommands.add(appendTextCommand);
 	}
 
 	@Override
 	public String toString() {
-		return data.toString();
+		return undoCommands.toString();
 	}
 
 	public boolean hasRedo() {
-		return data2.isNotEmpty();
+		return redoCommands.isNotEmpty();
 	}
 
 	public void undo() {
-		moveLastCommand(data, data2);
+		moveLastCommand(undoCommands, redoCommands);
 	}
 
 	private void moveLastCommand(Commands from, Commands to) {
@@ -75,14 +75,14 @@ public class Document {
 	}
 
 	public void redo() {
-		moveLastCommand(data2, data);
+		moveLastCommand(redoCommands, undoCommands);
 	}
 
 	public int getUndoCommandNumber() {
-		return data.peek().getOrder();
+		return undoCommands.peek().getOrder();
 	}
 
 	public Object getRedoCommandNumber() {
-		return data2.peek().getOrder();
+		return redoCommands.peek().getOrder();
 	}
 }
