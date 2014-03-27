@@ -2,26 +2,27 @@ package com.gmaur.kata.undostack;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class Document {
 
 	public static class Commands {
-		private List<Command> commands;
+		private Stack<Command> commands;
 
 		public Commands() {
-			this.commands = new ArrayList<Command>();
+			this.commands = new Stack<Command>();
 		}
 
 		public Command peek() {
-			return commands.get(commands.size() - 1);
+			return commands.peek();
 		}
 
 		public Command pop() {
-			return commands.remove(commands.size() - 1);
+			return commands.pop();
 		}
 
 		public void add(Command lastCommand) {
-			commands.add(lastCommand);
+			commands.push(lastCommand);
 		}
 
 		public boolean isNotEmpty() {
