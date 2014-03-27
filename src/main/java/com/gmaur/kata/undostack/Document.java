@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Document {
 
-	private List<Command> commands;
+	private List<Command> commands; 
 	private List<Command> undidCommands;
 	private int orderNumber;
 
