@@ -55,13 +55,13 @@ public class Document {
 	}
 
 	public boolean hasUndo() {
-		return isNotEmpty(data);
+		return data.isNotEmpty();
 	}
 
 	public void addCommand(Command appendTextCommand) {
 		++orderNumber;
 		appendTextCommand.setOrder(orderNumber);
-		this.data.getCommands().add(appendTextCommand);
+		this.data.add(appendTextCommand);
 	}
 
 	@Override
@@ -70,11 +70,7 @@ public class Document {
 	}
 
 	public boolean hasRedo() {
-		return isNotEmpty(data2);
-	}
-
-	private boolean isNotEmpty(Commands list) {
-		return list.isNotEmpty();
+		return data2.isNotEmpty();
 	}
 
 	public void undo() {
