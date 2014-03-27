@@ -5,65 +5,84 @@ import java.util.List;
 
 public class Document {
 
-	private List<Command> commands; 
-	private List<Command> undidCommands;
+	public static class Commands {
+		private List<Command> commands;
+
+		public Commands() {
+			this.commands = new ArrayList<Command>();
+		}
+
+		public Command peek() {
+			return commands.get(commands.size() - 1);
+		}
+
+		public Command pop() {
+			return commands.remove(commands.size() - 1);
+		}
+
+		public void add(Command lastCommand) {
+			commands.add(lastCommand);
+		}
+
+		public boolean isNotEmpty() {
+			return !commands.isEmpty();
+		}
+
+		@Override
+		public String toString() {
+			return commands.toString();
+		}
+		
+		
+	}
+
+	private Commands undoCommands = new Commands();
+	private Commands redoCommands = new Commands();
 	private int orderNumber;
 
 	public Document() {
-		this.commands = new ArrayList<Command>();
-		this.undidCommands = new ArrayList<Command>();
+		this.undoCommands = new Commands();
+		this.redoCommands = new Commands();
 		orderNumber = 0;
 	}
 
 	public boolean hasUndo() {
-		return isNotEmpty(commands);
+		return undoCommands.isNotEmpty();
 	}
 
 	public void addCommand(Command appendTextCommand) {
 		++orderNumber;
 		appendTextCommand.setOrder(orderNumber);
-		this.commands.add(appendTextCommand);
+		this.undoCommands.add(appendTextCommand);
 	}
 
 	@Override
 	public String toString() {
-		return commands.toString();
+		return undoCommands.toString();
 	}
 
 	public boolean hasRedo() {
-		return isNotEmpty(undidCommands);
-	}
-
-	private boolean isNotEmpty(List<Command> list) {
-		return !list.isEmpty();
+		return redoCommands.isNotEmpty();
 	}
 
 	public void undo() {
-		moveLastCommand(commands, undidCommands);
+		moveLastCommand(undoCommands, redoCommands);
 	}
 
-	private void moveLastCommand(List<Command> from, List<Command> to) {
-		Command lastCommand = pop(from);
+	private void moveLastCommand(Commands from, Commands to) {
+		Command lastCommand = from.pop();
 		to.add(lastCommand);
 	}
 
-	private Command pop(List<Command> list) {
-		return list.remove(list.size() - 1);
-	}
-
 	public void redo() {
-		moveLastCommand(undidCommands, commands);
+		moveLastCommand(redoCommands, undoCommands);
 	}
 
 	public int getUndoCommandNumber() {
-		return peek(commands).getOrder();
+		return undoCommands.peek().getOrder();
 	}
 
 	public Object getRedoCommandNumber() {
-		return peek(undidCommands).getOrder();
-	}
-
-	private Command peek(List<Command> from) {
-		return from.get(from.size() - 1);
+		return redoCommands.peek().getOrder();
 	}
 }
