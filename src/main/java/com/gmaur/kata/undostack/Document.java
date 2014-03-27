@@ -26,6 +26,18 @@ public class Document {
 		public void setUndidCommands(List<Command> undidCommands) {
 			this.commands = undidCommands;
 		}
+
+		public Command peek() {
+			return commands.get(commands.size() - 1);
+		}
+
+		public Command pop() {
+			return commands.remove(commands.size() - 1);
+		}
+
+		public void add(Command lastCommand) {
+			commands.add(lastCommand);
+		}
 	}
 
 	private Commands data = new Commands();
@@ -62,31 +74,27 @@ public class Document {
 	}
 
 	public void undo() {
-		moveLastCommand(data.getCommands(), data2.getUndidCommands());
+		moveLastCommand(data, data2);
 	}
 
-	private void moveLastCommand(List<Command> from, List<Command> to) {
+	private void moveLastCommand(Commands from, Commands to) {
 		Command lastCommand = pop(from);
 		to.add(lastCommand);
 	}
 
-	private Command pop(List<Command> list) {
-		return list.remove(list.size() - 1);
+	private Command pop(Commands from) {
+		return from.pop();
 	}
 
 	public void redo() {
-		moveLastCommand(data2.getUndidCommands(), data.getCommands());
+		moveLastCommand(data2, data);
 	}
 
 	public int getUndoCommandNumber() {
-		return peek(data.getCommands()).getOrder();
+		return data.peek().getOrder();
 	}
 
 	public Object getRedoCommandNumber() {
-		return peek(data2.getUndidCommands()).getOrder();
-	}
-
-	private Command peek(List<Command> from) {
-		return from.get(from.size() - 1);
+		return data2.peek().getOrder();
 	}
 }
