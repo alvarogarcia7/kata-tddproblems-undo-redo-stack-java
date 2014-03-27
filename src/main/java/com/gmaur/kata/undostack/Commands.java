@@ -22,7 +22,7 @@ public class Commands {
 	 */
 	@Deprecated
 	public void add(Command lastCommand) {
-		commands.push(lastCommand);
+		push(lastCommand);
 	}
 	
 	public void push(Command lastCommand) {
