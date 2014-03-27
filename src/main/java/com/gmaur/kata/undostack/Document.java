@@ -12,22 +12,6 @@ public class Document {
 			this.commands = new ArrayList<Command>();
 		}
 
-		public List<Command> getCommands() {
-			return commands;
-		}
-
-		public void setCommands(List<Command> commands) {
-			this.commands = commands;
-		}
-		
-		public List<Command> getUndidCommands() {
-			return commands;
-		}
-
-		public void setUndidCommands(List<Command> undidCommands) {
-			this.commands = undidCommands;
-		}
-
 		public Command peek() {
 			return commands.get(commands.size() - 1);
 		}
