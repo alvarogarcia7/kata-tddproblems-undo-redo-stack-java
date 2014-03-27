@@ -21,10 +21,18 @@ public class Document {
 			return commands.pop();
 		}
 
+		/**
+		 * Prefer using {@link #push(Command)} instead of {@link #add(Command)}
+		 */
+		@Deprecated
 		public void add(Command lastCommand) {
 			commands.push(lastCommand);
 		}
-
+		
+		public void push(Command lastCommand) {
+			commands.push(lastCommand);
+		}
+		
 		public boolean isNotEmpty() {
 			return !commands.isEmpty();
 		}
@@ -33,8 +41,6 @@ public class Document {
 		public String toString() {
 			return commands.toString();
 		}
-		
-		
 	}
 
 	private Commands undoCommands = new Commands();
