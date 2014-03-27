@@ -42,6 +42,13 @@ public class Document {
 		public boolean isNotEmpty() {
 			return !commands.isEmpty();
 		}
+
+		@Override
+		public String toString() {
+			return commands.toString();
+		}
+		
+		
 	}
 
 	private Commands data = new Commands();
@@ -66,7 +73,7 @@ public class Document {
 
 	@Override
 	public String toString() {
-		return data.getCommands().toString();
+		return data.toString();
 	}
 
 	public boolean hasRedo() {
