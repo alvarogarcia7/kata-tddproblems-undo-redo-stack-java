@@ -5,33 +5,56 @@ import java.util.List;
 
 public class Document {
 
-	private List<Command> commands; 
-	private List<Command> undidCommands;
+	public static class Commands {
+		private List<Command> commands;
+
+		public Commands() {
+		}
+
+		public List<Command> getCommands() {
+			return commands;
+		}
+
+		public void setCommands(List<Command> commands) {
+			this.commands = commands;
+		}
+		
+		public List<Command> getUndidCommands() {
+			return commands;
+		}
+
+		public void setUndidCommands(List<Command> undidCommands) {
+			this.commands = undidCommands;
+		}
+	}
+
+	private Commands data = new Commands();
+	private Commands data2 = new Commands();
 	private int orderNumber;
 
 	public Document() {
-		this.commands = new ArrayList<Command>();
-		this.undidCommands = new ArrayList<Command>();
+		this.data.setCommands(new ArrayList<Command>());
+		this.data2.setUndidCommands(new ArrayList<Command>());
 		orderNumber = 0;
 	}
 
 	public boolean hasUndo() {
-		return isNotEmpty(commands);
+		return isNotEmpty(data.getCommands());
 	}
 
 	public void addCommand(Command appendTextCommand) {
 		++orderNumber;
 		appendTextCommand.setOrder(orderNumber);
-		this.commands.add(appendTextCommand);
+		this.data.getCommands().add(appendTextCommand);
 	}
 
 	@Override
 	public String toString() {
-		return commands.toString();
+		return data.getCommands().toString();
 	}
 
 	public boolean hasRedo() {
-		return isNotEmpty(undidCommands);
+		return isNotEmpty(data2.getUndidCommands());
 	}
 
 	private boolean isNotEmpty(List<Command> list) {
@@ -39,7 +62,7 @@ public class Document {
 	}
 
 	public void undo() {
-		moveLastCommand(commands, undidCommands);
+		moveLastCommand(data.getCommands(), data2.getUndidCommands());
 	}
 
 	private void moveLastCommand(List<Command> from, List<Command> to) {
@@ -52,15 +75,15 @@ public class Document {
 	}
 
 	public void redo() {
-		moveLastCommand(undidCommands, commands);
+		moveLastCommand(data2.getUndidCommands(), data.getCommands());
 	}
 
 	public int getUndoCommandNumber() {
-		return peek(commands).getOrder();
+		return peek(data.getCommands()).getOrder();
 	}
 
 	public Object getRedoCommandNumber() {
-		return peek(undidCommands).getOrder();
+		return peek(data2.getUndidCommands()).getOrder();
 	}
 
 	private Command peek(List<Command> from) {
