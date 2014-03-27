@@ -1,40 +1,6 @@
 package com.gmaur.kata.undostack;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Document {
-
-	public static class Commands {
-		private List<Command> commands;
-
-		public Commands() {
-			this.commands = new ArrayList<Command>();
-		}
-
-		public Command peek() {
-			return commands.get(commands.size() - 1);
-		}
-
-		public Command pop() {
-			return commands.remove(commands.size() - 1);
-		}
-
-		public void add(Command lastCommand) {
-			commands.add(lastCommand);
-		}
-
-		public boolean isNotEmpty() {
-			return !commands.isEmpty();
-		}
-
-		@Override
-		public String toString() {
-			return commands.toString();
-		}
-		
-		
-	}
 
 	private Commands undoCommands = new Commands();
 	private Commands redoCommands = new Commands();
@@ -79,10 +45,10 @@ public class Document {
 	}
 
 	public int getUndoCommandNumber() {
-		return undoCommands.peek().getOrder();
+		return undoCommands.getCommandOrder();
 	}
 
 	public Object getRedoCommandNumber() {
-		return redoCommands.peek().getOrder();
+		return redoCommands.getCommandOrder();
 	}
 }
