@@ -38,6 +38,10 @@ public class Document {
 		public void add(Command lastCommand) {
 			commands.add(lastCommand);
 		}
+
+		public boolean isNotEmpty() {
+			return !commands.isEmpty();
+		}
 	}
 
 	private Commands data = new Commands();
@@ -51,7 +55,7 @@ public class Document {
 	}
 
 	public boolean hasUndo() {
-		return isNotEmpty(data.getCommands());
+		return isNotEmpty(data);
 	}
 
 	public void addCommand(Command appendTextCommand) {
@@ -66,11 +70,11 @@ public class Document {
 	}
 
 	public boolean hasRedo() {
-		return isNotEmpty(data2.getUndidCommands());
+		return isNotEmpty(data2);
 	}
 
-	private boolean isNotEmpty(List<Command> list) {
-		return !list.isEmpty();
+	private boolean isNotEmpty(Commands list) {
+		return list.isNotEmpty();
 	}
 
 	public void undo() {
@@ -78,12 +82,8 @@ public class Document {
 	}
 
 	private void moveLastCommand(Commands from, Commands to) {
-		Command lastCommand = pop(from);
+		Command lastCommand = from.pop();
 		to.add(lastCommand);
-	}
-
-	private Command pop(Commands from) {
-		return from.pop();
 	}
 
 	public void redo() {
